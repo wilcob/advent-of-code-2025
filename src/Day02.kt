@@ -33,7 +33,7 @@ fun main() {
                 for (character in numberString) {
                     sequence += character
 
-                    // Check if the built sequence is even:
+                    // Check if the built sequence length is even:
                     if (numberString.length % sequence.length != 0) continue
 
                     // Check how many times the built sequence fits in the number string (it can't be 1):
