@@ -24,8 +24,6 @@ fun main() {
                 allConnections.add(Triple(locationA, locationB, distance(locationA, locationB)))
             }
         }
-
-        // Sort all connections by their distance:
         return allConnections.sortedBy { it.third }
     }
 
@@ -60,8 +58,8 @@ fun main() {
         val circuitGroups = locations.map { mutableSetOf(it) }.toMutableList()
         lateinit var lastConnection: Triple<Location, Location, Double>
 
-        for (locationToLocationWithDistance in allConnections) {
-            val (locationA, locationB, _) = locationToLocationWithDistance
+        for (connection in allConnections) {
+            val (locationA, locationB, _) = connection
             val groupAIndex = circuitGroups.indexOfFirst { it.contains(locationA) }
             val groupBIndex = circuitGroups.indexOfFirst { it.contains(locationB) }
 
@@ -72,7 +70,7 @@ fun main() {
                 circuitGroups.removeAt(groupBIndex)
             }
 
-            lastConnection = locationToLocationWithDistance
+            lastConnection = connection
             if (circuitGroups.size == 1) break
         }
 
