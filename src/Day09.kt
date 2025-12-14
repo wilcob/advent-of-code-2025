@@ -1,6 +1,5 @@
 import kotlin.math.abs
 
-
 fun main() {
     data class Point(val x: Int, val y: Int)
 
@@ -49,6 +48,7 @@ fun main() {
         val pointC = Point(pointA.x, pointB.y)
         val pointD = Point(pointB.x, pointA.y)
 
+        // Check if any corner is not inside the polygon, if so the rectangle is invalid:
         if (listOf(pointA, pointB, pointC, pointD).any { !isInsideOrOnTheEdge(it, polygon) }) {
             return false
         }
@@ -58,14 +58,14 @@ fun main() {
         val rectMinY = minOf(pointA.y, pointB.y)
         val rectMaxY = maxOf(pointA.y, pointB.y)
 
-        // If a point is within the bounds of the rectangle,the rectangle is invalid:
+        // Check if there is any point of the polygon inside the rectangle, if so rectangle is invalid:
         for (p in polygon) {
             if (p.x > rectMinX && p.x < rectMaxX && p.y > rectMinY && p.y < rectMaxY) {
                 return false
             }
         }
 
-        // If any vertical or horizontal edges crosses the rectangle's interior, the rectangle is invalid:
+        // Check if any vertical or horizontal edges crosses the rectangle's interior, if so the rectangle is invalid:
         for (i in polygon.indices) {
             val edgePointA = polygon[i]
             val edgePointB = polygon[(i + 1) % polygon.size]
