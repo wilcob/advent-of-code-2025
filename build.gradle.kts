@@ -13,3 +13,7 @@ tasks {
         gradleVersion = "9.2.1"
     }
 }
+
+dependencies {
+    implementation(files("libs/com.microsoft.z3.jar"))
+}
